@@ -1,3 +1,5 @@
+@file:Suppress("unused")
+
 package io.github.yangentao.tcp
 
 import java.net.StandardSocketOptions
@@ -13,11 +15,11 @@ interface NetFrame {
 }
 
 interface TcpLogger {
-    fun log(msg: String): Unit
+    fun log(msg: String)
     fun flush() {}
 }
 
-internal var _tcpLogger: TcpLogger = object : TcpLogger {
+internal var tcpLoggerDefault: TcpLogger = object : TcpLogger {
     override fun log(msg: String) {
         println(msg)
     }
@@ -28,11 +30,11 @@ internal var _tcpLogger: TcpLogger = object : TcpLogger {
 }
 
 fun setTcpLogger(logger: TcpLogger) {
-    _tcpLogger = logger
+    tcpLoggerDefault = logger
 }
 
 internal fun logTcp(msg: String) {
-    _tcpLogger.log(msg)
+    tcpLoggerDefault.log(msg)
 }
 
 interface TcpCallback {

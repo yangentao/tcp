@@ -1,3 +1,5 @@
+@file:Suppress("unused")
+
 package io.github.yangentao.tcp
 
 import java.io.IOException
@@ -31,7 +33,7 @@ class TcpServer(
                 } else {
                     emptyList()
                 }
-            } catch (ex: Exception) {
+            } catch (_: Exception) {
                 emptyList()
             }
         }
@@ -41,7 +43,7 @@ class TcpServer(
 
     @Synchronized
     fun start(port: Int, callback: TcpServerCallback) {
-        if (isOpen) throw throw IllegalStateException("已存在是start状态")
+        if (isOpen) throw IllegalStateException("已存在是start状态")
         this.serverCallback = callback
         val ch = ServerSocketChannel.open()
         ch.configureBlocking(false)
@@ -111,7 +113,7 @@ class TcpServer(
     private fun runLoop() {
         val sel = this.selector
         while (sel.isOpen && checkOnce(sel)) {
-            _tcpLogger.flush()
+            tcpLoggerDefault.flush()
         }
         acceptKey?.cancel()
         closeAllClient()
@@ -119,7 +121,7 @@ class TcpServer(
         selector.close()
         serverSocket = null
         acceptKey = null
-        _tcpLogger.flush()
+        tcpLoggerDefault.flush()
     }
 
     private fun checkIdle() {

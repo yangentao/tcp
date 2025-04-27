@@ -1,3 +1,5 @@
+@file:Suppress("unused")
+
 package io.github.yangentao.tcp.frames
 
 import io.github.yangentao.tcp.NetFrame

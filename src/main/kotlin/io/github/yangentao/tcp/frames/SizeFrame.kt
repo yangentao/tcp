@@ -1,3 +1,5 @@
+@file:Suppress("unused")
+
 package io.github.yangentao.tcp.frames
 
 import io.github.yangentao.tcp.NetFrame
@@ -46,14 +48,3 @@ class SizeFrame(
     }
 }
 
-fun Int.toByteArray(order: ByteOrder = ByteOrder.BIG_ENDIAN): ByteArray {
-    val b0: Byte = ((this shr 24) and 0x00ff).toByte()
-    val b1: Byte = ((this shr 16) and 0x00ff).toByte()
-    val b2: Byte = ((this shr 8) and 0x00ff).toByte()
-    val b3: Byte = (this and 0x00ff).toByte()
-    return if (order == ByteOrder.BIG_ENDIAN) {
-        byteArrayOf(b0, b1, b2, b3)
-    } else {
-        byteArrayOf(b3, b2, b1, b0)
-    }
-}

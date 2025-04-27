@@ -1,3 +1,5 @@
+@file:Suppress("unused")
+
 package io.github.yangentao.tcp
 
 import java.nio.ByteBuffer
@@ -54,7 +56,7 @@ fun SelectionKey.readBuffer(): ByteArray? {
     buf.clear()
     val key = this
     val ch = key.channel() as SocketChannel
-    var readData: ByteArray = ByteArray(0)
+    var readData = ByteArray(0)
     do {
         val nRead = try {
             ch.read(buf)
