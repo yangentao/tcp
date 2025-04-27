@@ -9,6 +9,9 @@ import java.nio.channels.ServerSocketChannel
 import java.nio.channels.SocketChannel
 import kotlin.reflect.KProperty
 
+/**
+ * base frame of bytes
+ */
 interface NetFrame {
     val maxFrameLength: Int
     fun accept(buf: ByteArray): Pair<Int, ByteArray?>
@@ -66,6 +69,9 @@ fun SocketChannel.tcpNoDelay(b: Boolean) {
     this.setOption(StandardSocketOptions.TCP_NODELAY, b)
 }
 
+/**
+ * count of clients
+ */
 val Selector.keyCount: Int get() = if (this.isOpen) this.keys().count() else 0
 val SelectionKey.socketChannel: SocketChannel get() = this.channel() as SocketChannel
 val SelectionKey.serverChannel: ServerSocketChannel get() = this.channel() as ServerSocketChannel

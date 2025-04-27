@@ -13,7 +13,10 @@ private const val LF: Byte = 10  // LF
 private const val TB: Byte = 9   // TAB
 private val witeSpaces: Set<Byte> = setOf(SP, CR, LF, TB)
 
-//只支持utf8 或 ascii
+/**
+ * 只支持utf8 或 ascii
+ */
+
 class JsonObjectFrame(val trim: Boolean = true, override val maxFrameLength: Int = 2048) : NetFrame {
 
     override fun accept(buf: ByteArray): Pair<Int, ByteArray?> {

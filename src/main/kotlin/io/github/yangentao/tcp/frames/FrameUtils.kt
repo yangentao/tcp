@@ -4,16 +4,14 @@ import io.github.yangentao.tcp.NetFrame
 import io.github.yangentao.tcp.logTcp
 import io.github.yangentao.tcp.strUTF8
 
-//
-//fun testFixLength() {
-//	val buf = byteArrayOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 0)
-//	val f = FixLengthFrame(3)
-//	val p = f.accept(buf)
-//	logd(p.first, p.second?.joinToString(",") { it.toString() })
-//
-//
-//}
-//
+/**
+ * fun testFixLength() {
+ * 	val buf = byteArrayOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 0)
+ * 	val f = FixLengthFrame(3)
+ * 	val p = f.accept(buf)
+ * 	logd(p.first, p.second?.joinToString(",") { it.toString() })
+ * 	}
+ */
 fun testFrame(buf: ByteArray, f: NetFrame) {
     val p = f.accept(buf)
     logTcp("size: ${p.first} data:" + p.second?.joinToString(",") { it.toString() })

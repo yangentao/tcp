@@ -9,6 +9,9 @@ import java.nio.channels.SelectionKey
 import java.nio.channels.Selector
 import java.nio.channels.SocketChannel
 
+/**
+ * Tcp client
+ */
 class TcpClient(val bufferFrame: NetFrame, val host: String, val port: Int) {
     val thread: Thread by lazy { Thread(::runLoop, "tcp_client_loop").apply { this.isDaemon = true } }
     private var selector: Selector = Selector.open()

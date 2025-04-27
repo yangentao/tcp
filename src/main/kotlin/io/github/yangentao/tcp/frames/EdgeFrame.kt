@@ -2,11 +2,14 @@ package io.github.yangentao.tcp.frames
 
 import io.github.yangentao.tcp.NetFrame
 
-// {"name":"yang"}
-//start:  "{"
-//end:  "}"
-//trimEdge, if trim, return "name":"yang",  else return   {"name":"yang"}
-//strict, if true , edge MUST appear at first/last, else start/end edge can appear any position
+/**
+ * {"name":"yang"}
+ * start:  "{"
+ * end:  "}"
+ * trimEdge, if trim, return "name":"yang",  else return   {"name":"yang"}
+ * strict, if true , edge MUST appear at first/last, else start/end edge can appear any position
+ */
+
 class EdgeFrame(private val start: ByteArray, private val end: ByteArray, private val trimEdge: Boolean = false, private val strict: Boolean = false, override val maxFrameLength: Int = 2048) : NetFrame {
 
     init {

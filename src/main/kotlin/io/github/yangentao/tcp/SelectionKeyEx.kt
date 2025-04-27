@@ -24,10 +24,16 @@ var SelectionKey.readTime: Long by SelectionKeyValueDefault(0L)
 var SelectionKey.userId: String? by SelectionKeyValue
 var SelectionKey.ident: String? by SelectionKeyValue
 
+/**
+ * default charset is utf-8
+ */
 fun SelectionKey.writeText(text: String, charset: Charset = Charsets.UTF_8): Boolean {
     return this.write(text.toByteArray(charset))
 }
 
+/**
+ * write bytes
+ */
 fun SelectionKey.write(data: ByteArray): Boolean {
     if (!this.isValid) {
         return false
@@ -50,7 +56,9 @@ fun SelectionKey.write(data: ByteArray): Boolean {
 
 private val localReadBuf: ThreadLocal<ByteBuffer> by lazy { ThreadLocal.withInitial { ByteBuffer.allocate(8192) } }
 
-//if return null, channel should be close
+/**
+ * if return null, channel should be close
+ */
 fun SelectionKey.readBuffer(): ByteArray? {
     val buf = localReadBuf.get()
     buf.clear()
@@ -81,6 +89,9 @@ fun SelectionKey.readBuffer(): ByteArray? {
     return readData
 }
 
+/**
+ * check if frame is accept
+ */
 fun SelectionKey.checkFrame(bufRecv: ByteArray, bufferFrame: NetFrame, callback: TcpCallback?) {
     val key: SelectionKey = this
     val oldBuf = key.byteArray

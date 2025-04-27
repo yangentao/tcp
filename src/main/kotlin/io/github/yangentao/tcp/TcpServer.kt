@@ -9,6 +9,9 @@ import java.nio.channels.SelectionKey
 import java.nio.channels.Selector
 import java.nio.channels.ServerSocketChannel
 
+/**
+ * tcp server
+ */
 class TcpServer(
     private val bufferFrame: NetFrame,
     private val maxClient: Int = 2048,
